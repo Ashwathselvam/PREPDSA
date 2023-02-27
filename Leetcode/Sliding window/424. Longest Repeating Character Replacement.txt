@@ -1,0 +1,19 @@
+class Solution {
+    public int characterReplacement(String s, int k) {
+        char res[] = s.toCharArray();
+        int left = 0;
+        int n  = s.length();
+        int [] arr  = new int[26];
+        int right=0;
+        int max=0;
+        for(right=0;right<n;right++){
+                arr[res[right]-'A']++;
+               while(right-left+1-(Arrays.stream(arr).max().getAsInt())>k){
+                   arr[res[left++]-'A']--;
+               }
+             max =  Math.max(max,right-left+1);
+
+        }
+    return max;
+    }
+}

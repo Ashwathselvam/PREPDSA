@@ -1,0 +1,37 @@
+class Solution {
+    public String minWindow(String s, String t) {
+        int n = s.length();
+        int m = t.length();
+        int fl =0;
+        if(m>n) return ""; 
+        HashMap<Character,Integer> hm = new HashMap<>();
+        for(char i:t.toCharArray()){
+         hm.put(i,hm.getOrDefault(i,0)+1);
+        }
+        int matched=0;
+        int min = Integer.MAX_VALUE;
+        int right=0;
+        int left=0;
+        for(right=0;right<n;right++){
+            char r = s.charAt(right);
+            if(hm.containsKey(r)){
+                hm.put(r,hm.get(r)-1);
+                if(hm.get(r)==0) matched++;
+            }
+            while(matched==hm.size()){
+                if(min>right-left+1){
+                      min=right-left+1;
+                     fl=left;
+                }
+                char del = s.charAt(left++);
+                if(hm.containsKey(del)){
+                    if(hm.get(del)==0) matched--;
+                    hm.put(del,hm.get(del)+1);
+
+                }
+            }
+        }
+         return min > s.length() ? "" : s.substring(fl, fl + min);
+       
+    }
+}

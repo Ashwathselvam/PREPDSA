@@ -1,0 +1,30 @@
+class Solution {
+    public  boolean isEmpty(int []arr){
+        for(int i=0;i<26;i++){
+            if(arr[i]!=0)
+            return false;
+        }
+        return true;
+    }
+    public boolean checkInclusion(String s1, String s2) {
+        int l=s1.length();
+        int n = s2.length();
+       if(l>n)
+       return false;
+       int [] fq = new int[26];
+       for(int i=0;i<l;i++){
+           fq[s1.charAt(i)-'a']++;
+           fq[s2.charAt(i)-'a']--;
+       }
+       if(isEmpty(fq)) return true;
+      int start=0;
+       for(int right=l;right<n;right++){
+         if(isEmpty(fq))
+         return true;
+         fq[s2.charAt(right)-'a']--;
+         fq[s2.charAt(start++)-'a']++;
+       }
+       if(isEmpty(fq)) return true;
+       return false;
+    }
+}
