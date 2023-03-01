@@ -1,0 +1,24 @@
+class Solution {
+    public List<List<Integer>> combinationSum(int[] nums, int target) {
+      List<List<Integer>> list = new ArrayList<>();
+      back(list, new ArrayList<>(),nums,target,0,0);
+        return list;
+    }
+     public void back(List<List<Integer>> list,List<Integer> temp,int []nums,int target,int sums,int last){
+         if(sums==target)
+         {
+             list.add(new ArrayList<Integer>(temp));
+             return;
+         }
+         if(sums>target){
+             return;
+         }
+         for(int i=last;i<nums.length;i++){
+             sums+=nums[i];
+             temp.add(nums[i]);
+             back(list,temp,nums,target,sums,i);  
+            int rem= temp.remove(temp.size()-1);
+             sums-=rem;
+         }
+        }
+}
