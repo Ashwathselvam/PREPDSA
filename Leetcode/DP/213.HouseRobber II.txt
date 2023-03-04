@@ -1,0 +1,19 @@
+class Solution {
+    public int rob_helper(int l,int r,int nums[]){
+        int n = nums.length;
+        int take=nums[l];
+        int dont =0;
+        for(int i=l+1;i<=r;i++){
+             int temp=dont;
+             dont = Math.max(dont,take);
+             take = nums[i]+temp;
+        }
+        return Math.max(dont,take);
+    }
+    public int rob(int[] nums) {
+        int n=nums.length;
+        if (n==1) return nums[0];
+        if(n==2) return Math.max(nums[0],nums[1]);
+        return Math.max(rob_helper(0,n-2,nums),rob_helper(1,n-1,nums));
+    }
+}

@@ -1,0 +1,11 @@
+class Solution {
+    public int rob(int[] nums) {
+  int dont = 0,take = nums[0];
+  for(int i=1;i<nums.length;i++){
+      int temp=dont;
+      dont = Math.max(dont,take);
+      take = nums[i]+temp;
+  }
+  return Math.max(dont,take);
+    }
+}
