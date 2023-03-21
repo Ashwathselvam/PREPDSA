@@ -1,0 +1,26 @@
+import java.util.*;
+/**
+ * A
+ */
+public class Main{
+static long sol(long a,long b,long c,long d){
+    long curr,ans;
+     if(d<b)  return -1;
+     curr=a+d-b;
+     if(curr<c)
+     return -1;
+     ans = (d-b)+Math.abs(curr-c);
+     return ans;
+}
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int t =  sc.nextInt();
+        while(t-->0){ 
+            long a = sc.nextLong();
+            long b = sc.nextLong();
+             long  c = sc.nextLong();
+             long  d = sc.nextLong();
+            System.out.println(sol(a,b,c,d));
+        }
+    }
+}
